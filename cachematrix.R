@@ -2,11 +2,12 @@
 ## functions do
 
 ## Write a short comment describing this function
-## This function will solve the inverse form of the given matrix
+## This function will solve the inverse of the given matrix
+## If there is no inverse of the given matrix, it will show "NULL"
 
 
 makeCacheMatrix <- function(x = matrix()) {
- mat_inv <- NULL
+  mat_inv <- NULL
   set <- function(numb) {
     x <<- numb
     mat_inv <<- NULL
@@ -15,16 +16,17 @@ makeCacheMatrix <- function(x = matrix()) {
   get <- function() x
   setInverse <- function(inverse) mat_inv <<- inverse
   getInverse <- function() mat_inv
-  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)  
+  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
 }
 
 
 ## Write a short comment describing this function
-## This function will retrieve the inverse value from the cache if it is already calculated
+## This function will retrieve the inverse value from the cache 
+## if it is already calculated
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
- mat_inv <- x$getInverse()
+  ## Return a matrix that is the inverse of 'x'
+  mat_inv <- x$getInverse()
   if (!is.null(mat_inv)) {
     message("getting cached data")
     return(mat_inv)
@@ -33,7 +35,11 @@ cacheSolve <- function(x, ...) {
   numb_mat <- x$get()
   mat_inv <- solve(numb_mat, ...)
   x$setInverse(mat_inv)
-  mat_inv       
+  mat_inv
 }
+
+
+
+
 
 
